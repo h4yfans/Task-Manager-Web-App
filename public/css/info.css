@@ -1,0 +1,43 @@
+.info-box {
+    text-align: center;
+    width: 300px;
+    min-width: 250px;
+    margin: auto;
+    padding: 16px;
+    border-radius: 3px;
+}
+
+.info-box.fail {
+    border: 1px solid red;
+    color: red;
+    background-color: #ffc3ad;
+}
+
+.info-box.success {
+    border: 1px solid green;
+    color: green;
+    background-color: #93ffb1;
+}
+
+.btn-task, .info-task{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 15px 0;
+}
+
+.info-task{
+    border-radius: 5px;
+    margin:4px;
+    padding:4px;
+}
+
+.info-task.success{
+    background-color: #DFF0D8;
+    color: #3C763D;
+}
+
+.info-task.fail{
+    background-color: #F2DEDE;
+    color: #A94442;
+}
+

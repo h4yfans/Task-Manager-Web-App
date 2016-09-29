@@ -54,7 +54,7 @@
                     <td>{{$task->updated_at->format('m/d/Y')}}</td>
                     <td class="change">
                         <a class="btn edit waves-effect waves-light modal-trigger" href="#modal1" type="submit">Edit</a>
-                        <a class="btn delete waves-effect waves-light" type="submit" href="{{route('task.delete', ['task_id' => $task->id])}}">Delete</a>
+                        <a class="btn delete waves-effect waves-light delete" type="submit" href="{{route('task.delete', ['task_id' => $task->id])}}">Delete</a>
                     </td>
                 </tr>
             @endif

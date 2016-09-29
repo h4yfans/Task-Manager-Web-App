@@ -12,8 +12,9 @@ class TaskController extends Controller
 {
     public function getIndex()
     {
-        return view('admin.dashboard');
-    }
+        $tasks = Task::orderBy('created_at', 'desc')->get();
+
+        return view('admin.dashboard', ['tasks' => $tasks]);    }
 
     public function postNewTask(Request $request)
     {
@@ -24,20 +25,12 @@ class TaskController extends Controller
         $task = new Task();
         $task->task_name = $request['task_name'];
 
-
         $message = 'There was a error!';
         if ($request->user()->tasks()->save($task)) {
             $message = 'Task created!';
         }
 
         return redirect()->route('add.task')->with(['message' => $message]);
-    }
-
-    public function getTasks()
-    {
-        $tasks = Task::orderBy('created_at', 'desc')->get();
-
-        return view('admin.dashboard', ['tasks' => $tasks]);
     }
 
     public function postEditTask(Request $request)
@@ -64,7 +57,7 @@ class TaskController extends Controller
             return redirect()->back();
         }
 
-        $task->delete;
+        $task->delete();
         return redirect()->route('dashboard')->with(['success' => 'Successfully deleted!']);
     }
 }

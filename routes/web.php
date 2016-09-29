@@ -33,10 +33,6 @@ Route::group(['middleware' => ['web']], function () {
         'middleware' => 'auth'
     ]);
 
-    Route::get('/dashboard', [
-        'uses'       => 'TaskController@getTasks',
-        'as'         => 'get.tasks',
-    ]);
 
     Route::post('/dashboard', [
         'uses' => 'TaskController@postNewTask',

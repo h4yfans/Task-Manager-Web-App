@@ -18,8 +18,6 @@ $('.task').find('.change').find('.edit').on('click', function (event) {
 });
 
 $('#modal-save').on('click', function () {
-    console.log('modal-saveclick');
-
     $.ajax({
         method: 'POST',
         url: urlEdit,
@@ -32,6 +30,7 @@ $('#modal-save').on('click', function () {
         console.log(msg);
         $(postBodyElement).text(msg['new_body']);
         $('#modal1').closeModal();
+
     });
 });
 

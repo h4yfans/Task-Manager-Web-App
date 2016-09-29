@@ -10,7 +10,7 @@
 @endif
 
 @if(Session::has('success'))
-    <section class="info-box success">
+    <section class="info-box success" id="success">
         {{Session::get('success')}}
     </section>
 @endif

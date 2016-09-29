@@ -21,7 +21,7 @@ class UserController extends Controller
         if (Auth::check()) {
 
             $tasks = Task::orderBy('created_at', 'decs')->get();
-            return redirect()->route('dashboard',['tasks' => $tasks]);
+            return redirect()->route('dashboard', ['tasks' => $tasks]);
         }
 
         return view('frontend.sign');
@@ -38,7 +38,7 @@ class UserController extends Controller
             return redirect()->back()->with(['fail' => 'Could not log in']);
         }
 
-        return redirect()->route('get.tasks');
+        return redirect()->route('dashboard');
     }
 
     public function postSignUp(Request $request)
@@ -54,7 +54,6 @@ class UserController extends Controller
         $first_name = $request['first_name'];
         $last_name = $request['last_name'];
         $password1 = bcrypt($request['password1']);
-        $password2 = bcrypt($request['password2']);
         $email = $request['email'];
 
         if ($request['password1'] != $request['password2']) {
@@ -68,7 +67,10 @@ class UserController extends Controller
         $user->email = $email;
         $user->save();
 
-        return redirect()->route('index')->with(['success' => 'You signup!']);
+        if (!Auth::attempt(['email' => $request['email'], 'password' => $request['password1']])) {
+            return redirect()->back()->with(['fail' => 'Could not log in']);
+        }
+        return redirect()->route('dashboard')->with(['success' => 'You signup!']);
     }
 
     public function getLogout()
